@@ -1,0 +1,18 @@
+# Color theme
+import = [
+    "~/.config/alacritty/themes/themes/blood_moon.toml"
+]
+
+# Window settings
+window.dimensions = { columns = 160, lines = 40 }
+window.opacity = 0.9
+window.blur = true
+
+# Cursor settings
+cursor.style = { shape = "Block", blinking = "Always" }
+
+# Keybinds
+keyboard.bindings = [
+    { key = "v", mods = "Control", action = "Paste" },
+    { key = "c", mods = "Control|Shift", action = "Copy" },	
+]

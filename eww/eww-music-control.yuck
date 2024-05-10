@@ -1,0 +1,82 @@
+; Variables
+(defvar album-art "")
+(defvar song-name "")
+(defvar artist-name "")
+(defvar album-name "")
+(defvar is-playing false)
+
+(defwindow music-control-window
+  :monitor 0
+  :geometry (
+    geometry
+    :x "0px"
+    :y "0px"
+    :width "800px"
+    :height "300px"
+    :anchor "top center"
+  )
+  :stacking "overlay"
+  :exclusive "false"
+  :focusable "false"
+  :namespace "overlay"
+  (music-control)
+)
+
+(defwidget music-control []
+  (box
+    :class "music-control"
+    :orientation "h"
+    :space-evenly false
+    :spacing 50
+    (box
+      :class "album-art"
+      :style "background-image: url('${album-art}')"
+      :width 250
+      :height 250
+    )
+    (box
+      :class "song-description"
+      :orientation "v"
+      :width 500
+      :space-evenly false
+      :valign "center"
+      :halign "center"
+      :hexpand false
+      (label :class "song-name" :limit-width 20 :text "${song-name}")
+      (label :class "artist-name" :xalign "50%" :text "${artist-name}")
+      (box
+        :class "mediaControls"
+        :width 250
+        :hexpand false
+        :space-evenly false
+        :halign "center"
+        :spacing 40
+        (button
+          :width 100
+          :height 50
+          :halign "center"
+          :class "mediaControl"
+          :onclick "playerctl previous"
+          (image :path "./images/previous.svg")
+        )
+        (button
+          :width 100
+          :height 50
+          :halign "center"
+          :class "mediaControl"
+          :onclick "playerctl play-pause"
+          (image :path {is-playing ? "./images/pause.svg" : "./images/play.svg"})
+        )
+        (button
+          :width 100
+          :height 50
+          :halign "center"
+          :class "mediaControl"
+          :onclick "playerctl next"
+          (image :path "./images/skip.svg")
+        )
+      )
+    )
+  )
+)
+    

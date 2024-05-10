@@ -1,0 +1,68 @@
+(defpoll abc
+  :interval "0.2s"
+  "wpctl status | grep '*' | head -c 12 | tail -c 2"
+)
+
+(defpoll audio-source
+  :interval "0.2s"
+  "wpctl status | grep '*' | head -c 12 | tail -c 2"
+)
+
+(defpoll volume
+  :interval "0.1s"
+  "echo $(($(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tail -c 5) * 100))0"
+)
+
+(defwindow control-center-window
+  :monitor 0
+  :geometry (
+    geometry
+    :x "10px"
+    :y "0px"
+    :width "300px"
+    :anchor "top right"
+  )
+  :stacking "overlay"
+  :exclusive "false"
+  :focusable "false"
+  :namespace "overlay"
+  (control-center)
+)
+
+(defwidget control-center []
+  (box
+    :class "control-center"
+    :vexpand false
+    :space-evenly false
+    :orientation "v"
+    :spacing 15
+
+    (box
+      :orientation "v"
+        :spacing 3
+        :space-evenly false
+        (label :class "label-text" :text "AUDIO SOURCE" :xalign 0)
+        (box
+          :class "audio-source-chooser"
+          :vexpand false
+          :hexpand true
+          :space-evenly false
+          :spacing 10
+          (eventbox
+            :class '${audio-source == "44" ? "button-active" : "button"}'
+            :hexpand true
+            :height 30
+            :onclick "wpctl set-default 44"
+            (image :path "./images/headphones.svg" :image-width 18)
+          )
+          (eventbox
+            :class '${audio-source == "45" ? "button-active" : "button"}'
+            :hexpand true
+            :height 30
+            :onclick "wpctl set-default 45"
+            (image :path "./images/speaker.svg" :image-width 18)
+          )
+        )
+    )
+  )
+)

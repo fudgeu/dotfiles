@@ -1,0 +1,74 @@
+(include "./eww-music-control.yuck")
+(include "./eww-control-center.yuck")
+
+;; Variables
+(defpoll time
+  :interval "1s"
+  "date '+%-I:%M   %a, %b %d'"
+)
+
+(defvar icon-set "{}")
+
+(defvar rendered-window-icons "[]")
+
+;; Widgets
+(defwidget workspace-switcher []
+  (box
+    :class "workspace-switcher"
+    :space-evenly false
+    :spacing 0
+    :vexpand true
+    (for workspace-button in rendered-window-icons
+      (literal :content workspace-button)
+    )
+  )
+)
+
+(defwidget music-widget []
+  (eventbox
+    :class "music"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :onclick "eww open --toggle music-control-window"
+    (label :class "song-text" :text '${song-name != "" ? "♪ ${song-name} - ${artist-name}" : ""}')
+  )
+)
+
+(defwidget time-widget []
+  (eventbox
+    :class "time"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :onclick "eww open --toggle control-center-window"
+    (label :class "time-text" :text time)
+  )
+)
+
+;; Main bar
+(defwidget bar []
+  (centerbox
+    :orientation "h"
+    :class "bar"
+    (workspace-switcher)
+    (music-widget) 
+    (time-widget)
+  )
+)
+
+(defwindow example2
+  :monitor 0
+  :geometry (
+    geometry
+    :x "0%"
+    :y "0px"
+    :width "100%"
+    :height "25px"
+    :anchor "top center")
+  :stacking "overlay"
+  :exclusive "true"
+  :focusable "false"
+  :namespace "overlay"
+  (bar)
+)

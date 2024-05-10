@@ -1,0 +1,81 @@
+@import "eww-music-control.scss";
+@import "eww-control-center.scss";
+
+* {
+  all: unset;
+  font-family: "Source Code Pro", monospace;
+}
+
+.bar {
+  background-color: rgb(0, 0, 0, 1);
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.time {
+  all: unset;
+  font-family: "Source Code Pro", monospace;
+  color: #eeeeee;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(15, 15, 15);
+  }
+}
+
+.time-text {
+  padding: 0px 20px 0px 20px;
+}
+
+.music {
+  all: unset;
+  font-family: "Source Code Pro", monospace;
+  color: #eeeeee;
+  padding-left: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(15, 15, 15);
+  }
+}
+
+.song-text {
+  padding: 0px 20px 0px 20px;
+}
+
+.workspace {
+  border-radius: 5px;
+  padding: 0 12px 0 12px;
+
+  &:hover {
+    background-color: rgb(15, 15, 15);    
+  }
+
+  &:active {
+    background-color: rgb(0, 0, 0);    
+  }
+}
+
+.active-workspace {
+  background-color: rgb(25, 25, 25);
+  border-radius: 5px;
+  padding: 0 12px 0 12px;
+
+  &:active {
+    background-color: rgb(0, 0, 0);    
+  }
+}
+
+.workspace-empty {
+  border-radius: 5px;
+  padding: 0 12px 0 12px;
+  color: rgb(125, 125, 125);
+
+  &:hover {
+    background-color: rgb(15, 15, 15);    
+  }
+
+  &:active {
+    background-color: rgb(0, 0, 0);    
+  }
+}

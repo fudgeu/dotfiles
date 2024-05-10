@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# Except...
+!hypr/
+!hypr/**
+!eww/
+!eww/**
+!alacritty/
+!alacritty/**
+!rofi/
+!rofi/**
+!README.md
+!.gitignore
+!.gitmodules
